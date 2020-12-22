@@ -1,30 +1,39 @@
+import flask
 from flask import Flask, render_template, flash, request, redirect, url_for, session, g
 import logging
-from logging import FileHandler
-from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, PasswordField
-from wtforms.validators import DataRequired, EqualTo
-import config
-from models import User, Product, Order, OrderDetail, Cart, CartDetail, Wishlist, WishlistDetail
-from exts import db
-from utils import login_log
-from decorator import login_required
+# import config
+# from exts import db
 from sqlalchemy import or_
 import datetime
 import json
-import time
-from sqlalchemy import func
+from werkzeug.security import generate_password_hash, check_password_hash
+from functools import wraps
+from flask_sqlalchemy import SQLAlchemy
+# import time
+# from sqlalchemy import func
+# from logging import FileHandler
+# from flask_wtf import FlaskForm
+# from wtforms import StringField, SubmitField, PasswordField
+# from wtforms.validators import DataRequired, EqualTo
+# from utils import login_log
+# from decorator import login_required
+
+app = Flask(__name__)
+
+db = SQLAlchemy()
+db.app = app
+db.init_app(app)
 
 # initialize a flask object by transmitting a "__name__"
 # 1.convenient for flask frame to locate resource
 # 2.convenient for locate errors when flask plug-in like Flask-SqlAlchemy goes wrong
-app = Flask(__name__)
+
 # import config file
-app.config.from_object(config)
+# ! app.config.from_object(config)
 # very important! when dividing models file with this script!
-db.app = app
+#! db.app = app
 # to solve the problem of recursive reference
-db.init_app(app) 
+#! db.init_app(app)
 
 # solution for conflicts between jinja2 templates loading variable identifier "{{ }}" and jQuery-tmpl plug-in identifier"{{ }}",
 # using for passing data from flask to json
@@ -40,6 +49,138 @@ app.secret_key = 'dazha' # import os; app.secret_key = os.urandom(24) # 用os库
 # if there is nested dictionary or object stored in dictionary, "object(dic).attr" could be used in HTML to visit variables
 # or using the form of "object(dic)['attr']"
 passing_data = {'signup_user': 0}  
+
+
+# DEBUG = True
+# config database URL here
+# format: dialect+driver://username:password@host:port/database
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:fengyunjia@127.0.0.1:3306/buynow'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+# SQLALCHEMY_DATABASE_URI = 'mysql://root:fengyunjia@127.0.0.1:3306/buynow'
+# whether open dynamic modification, if it is on, server performance will be curtailed, and this API will be abandoned, thus False is recommended
+# SQLALCHEMY_TRACK_MODIFICATIONS = False
+# SECRET_KEY
+# SQLALCHEMY_DB
+
+
+
+
+def login_required(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        if session.get('user_email'):
+            return func(*args, **kwargs)
+        else:
+            return redirect(url_for('login'))
+    return wrapper
+
+
+
+class User(db.Model):
+    __tablename__ = 'user'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False)
+    username = db.Column(db.String(16), nullable=False)
+    email = db.Column(db.String(32), unique=True, nullable=False)
+    password = db.Column(db.String(256), nullable=False)
+    question = db.Column(db.String(40), nullable=False)
+    answer = db.Column(db.String(40), nullable=False)
+
+    cart_id = db.Column(db.Integer, db.ForeignKey('cart.id'))
+    wishlist_id = db.Column(db.Integer, db.ForeignKey('wishlist.id'))
+    # cart_number = db.Column(db.Integer, default=0)
+    # wishlist_number = db.Column(db.Integer, default=0)
+
+    def __init__(self, *args, **kwargs):
+        username = kwargs.get('username')
+        password = kwargs.get('password')
+        question = kwargs.get('question')
+        answer = kwargs.get('answer')
+        email = kwargs.get('email')
+        self.username = username
+        self.email = email
+        self.password = generate_password_hash(password)
+        self.question = question
+        self.answer = answer
+    def check_password(self, raw_password):
+        result = check_password_hash(self.password, raw_password)
+        return result
+    def __repr__(self):
+        return '<id:%d username:%s email:%s password:%s question:%s answer:%s>' % (self.id, self.username, self.email,
+                                                            self.password, self.question, self.answer)
+
+
+class Order(db.Model):
+    __tablename__ = 'order'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    time = db.Column(db.DateTime, nullable=True)
+    sum = db.Column(db.Float, nullable=True)
+    product_number_sum = db.Column(db.Integer, nullable=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
+    # 第一参数为要关联的表的模型的名字,作为正向引用，backref表示反向引用，以后可以通过User.orders反向引用来通过user对象查找
+    # 对应order表的数据
+    user = db.relationship('User', backref=db.backref("orders"))
+
+class Cart(db.Model):
+    __tablename__ = 'cart'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    sum = db.Column(db.Float, default=0)
+    product_number_sum = db.Column(db.Integer, default=0)
+    # user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
+    # 第一参数为要关联的表的模型的名字,作为正向引用，backref表示反向引用，以后可以通过User.orders反向引用来通过user对象查找
+    # 对应order表的数据
+    user = db.relationship('User', uselist=False, backref=db.backref("cart"))
+
+class Wishlist(db.Model):
+    __tablename__ = 'wishlist'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    product_number_sum = db.Column(db.Integer, default=0)
+    # user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
+    # 第一参数为要关联的表的模型的名字,作为正向引用，backref表示反向引用，以后可以通过User.orders反向引用来通过user对象查找
+    # 对应order表的数据
+    user = db.relationship('User', uselist=False, backref=db.backref("wishlist"))
+
+class CartDetail(db.Model):
+    __tablename__ = 'cartDetail'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    product_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=True)
+    product_number = db.Column(db.Integer, nullable=True)
+    product_sum = db.Column(db.Float, nullable=True)
+
+    cart_id = db.Column(db.Integer, db.ForeignKey('cart.id'), nullable=True)
+    cart = db.relationship('Cart', backref=db.backref("cartDetails"))
+    product = db.relationship('Product')
+
+
+class WishlistDetail(db.Model):
+    __tablename__ = 'wishlistDetail'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    product_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=True)
+
+    wishlist_id = db.Column(db.Integer, db.ForeignKey('wishlist.id'), nullable=True)
+    wishlist = db.relationship('Wishlist', backref=db.backref("wishlistDetails"))
+    product = db.relationship('Product')
+
+class OrderDetail(db.Model):
+    __tablename__ = 'orderDetail'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    product_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=True)
+    product_number = db.Column(db.Integer, nullable=True)
+    product_sum = db.Column(db.Float, nullable=True)
+
+    order_id = db.Column(db.Integer, db.ForeignKey('order.id'), nullable=True)
+    order = db.relationship('Order', backref=db.backref("orderDetails"))
+    product = db.relationship('Product')
+    # foreign key
+    # order id
+
+
+class Product(db.Model):
+    __tablename__ = 'product'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    product_name = db.Column(db.Text(50), nullable=True)
+    product_price = db.Column(db.Float(50), nullable=True)
+
 
 
 # this decorator will project to a url view function

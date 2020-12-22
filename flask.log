@@ -1,0 +1,452 @@
+Exception on / [GET]
+Traceback (most recent call last):
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\util\_collections.py", line 1020, in __call__
+    return self.registry[key]
+KeyError: 7656
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\virtualenv\flask\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\virtualenv\flask\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\virtualenv\flask\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\virtualenv\flask\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\virtualenv\flask\lib\site-packages\flask\app.py", line 1948, in full_dispatch_request
+    rv = self.preprocess_request()
+  File "D:\virtualenv\flask\lib\site-packages\flask\app.py", line 2242, in preprocess_request
+    rv = func()
+  File "C:/Users/75834/Desktop/BuyNow/app.py", line 382, in my_before_quest
+    user = User.query.filter(User.email == email).first()
+  File "D:\virtualenv\flask\lib\site-packages\flask_sqlalchemy\__init__.py", line 514, in __get__
+    return type.query_class(mapper, session=self.sa.session())
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\orm\scoping.py", line 78, in __call__
+    return self.registry()
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\util\_collections.py", line 1022, in __call__
+    return self.registry.setdefault(key, self.createfunc())
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\orm\session.py", line 3300, in __call__
+    return self.class_(**local_kw)
+  File "D:\virtualenv\flask\lib\site-packages\flask_sqlalchemy\__init__.py", line 137, in __init__
+    track_modifications = app.config['SQLALCHEMY_TRACK_MODIFICATIONS']
+KeyError: 'SQLALCHEMY_TRACK_MODIFICATIONS'
+Exception on /favicon.ico [GET]
+Traceback (most recent call last):
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\util\_collections.py", line 1020, in __call__
+    return self.registry[key]
+KeyError: 6892
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\virtualenv\flask\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\virtualenv\flask\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\virtualenv\flask\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\virtualenv\flask\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\virtualenv\flask\lib\site-packages\flask\app.py", line 1948, in full_dispatch_request
+    rv = self.preprocess_request()
+  File "D:\virtualenv\flask\lib\site-packages\flask\app.py", line 2242, in preprocess_request
+    rv = func()
+  File "C:/Users/75834/Desktop/BuyNow/app.py", line 382, in my_before_quest
+    user = User.query.filter(User.email == email).first()
+  File "D:\virtualenv\flask\lib\site-packages\flask_sqlalchemy\__init__.py", line 514, in __get__
+    return type.query_class(mapper, session=self.sa.session())
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\orm\scoping.py", line 78, in __call__
+    return self.registry()
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\util\_collections.py", line 1022, in __call__
+    return self.registry.setdefault(key, self.createfunc())
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\orm\session.py", line 3300, in __call__
+    return self.class_(**local_kw)
+  File "D:\virtualenv\flask\lib\site-packages\flask_sqlalchemy\__init__.py", line 137, in __init__
+    track_modifications = app.config['SQLALCHEMY_TRACK_MODIFICATIONS']
+KeyError: 'SQLALCHEMY_TRACK_MODIFICATIONS'
+Exception on / [GET]
+Traceback (most recent call last):
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\util\_collections.py", line 1020, in __call__
+    return self.registry[key]
+KeyError: 18528
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\virtualenv\flask\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\virtualenv\flask\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\virtualenv\flask\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\virtualenv\flask\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\virtualenv\flask\lib\site-packages\flask\app.py", line 1948, in full_dispatch_request
+    rv = self.preprocess_request()
+  File "D:\virtualenv\flask\lib\site-packages\flask\app.py", line 2242, in preprocess_request
+    rv = func()
+  File "C:/Users/75834/Desktop/BuyNow/app.py", line 382, in my_before_quest
+    user = User.query.filter(User.email == email).first()
+  File "D:\virtualenv\flask\lib\site-packages\flask_sqlalchemy\__init__.py", line 514, in __get__
+    return type.query_class(mapper, session=self.sa.session())
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\orm\scoping.py", line 78, in __call__
+    return self.registry()
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\util\_collections.py", line 1022, in __call__
+    return self.registry.setdefault(key, self.createfunc())
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\orm\session.py", line 3300, in __call__
+    return self.class_(**local_kw)
+  File "D:\virtualenv\flask\lib\site-packages\flask_sqlalchemy\__init__.py", line 137, in __init__
+    track_modifications = app.config['SQLALCHEMY_TRACK_MODIFICATIONS']
+KeyError: 'SQLALCHEMY_TRACK_MODIFICATIONS'
+Exception on /favicon.ico [GET]
+Traceback (most recent call last):
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\util\_collections.py", line 1020, in __call__
+    return self.registry[key]
+KeyError: 9488
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\virtualenv\flask\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\virtualenv\flask\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\virtualenv\flask\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\virtualenv\flask\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\virtualenv\flask\lib\site-packages\flask\app.py", line 1948, in full_dispatch_request
+    rv = self.preprocess_request()
+  File "D:\virtualenv\flask\lib\site-packages\flask\app.py", line 2242, in preprocess_request
+    rv = func()
+  File "C:/Users/75834/Desktop/BuyNow/app.py", line 382, in my_before_quest
+    user = User.query.filter(User.email == email).first()
+  File "D:\virtualenv\flask\lib\site-packages\flask_sqlalchemy\__init__.py", line 514, in __get__
+    return type.query_class(mapper, session=self.sa.session())
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\orm\scoping.py", line 78, in __call__
+    return self.registry()
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\util\_collections.py", line 1022, in __call__
+    return self.registry.setdefault(key, self.createfunc())
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\orm\session.py", line 3300, in __call__
+    return self.class_(**local_kw)
+  File "D:\virtualenv\flask\lib\site-packages\flask_sqlalchemy\__init__.py", line 137, in __init__
+    track_modifications = app.config['SQLALCHEMY_TRACK_MODIFICATIONS']
+KeyError: 'SQLALCHEMY_TRACK_MODIFICATIONS'
+Exception on / [GET]
+Traceback (most recent call last):
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\util\_collections.py", line 1020, in __call__
+    return self.registry[key]
+KeyError: 18832
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\virtualenv\flask\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\virtualenv\flask\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\virtualenv\flask\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\virtualenv\flask\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\virtualenv\flask\lib\site-packages\flask\app.py", line 1948, in full_dispatch_request
+    rv = self.preprocess_request()
+  File "D:\virtualenv\flask\lib\site-packages\flask\app.py", line 2242, in preprocess_request
+    rv = func()
+  File "C:/Users/75834/Desktop/BuyNow/app.py", line 385, in my_before_quest
+    user = User.query.filter(User.email == email).first()
+  File "D:\virtualenv\flask\lib\site-packages\flask_sqlalchemy\__init__.py", line 514, in __get__
+    return type.query_class(mapper, session=self.sa.session())
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\orm\scoping.py", line 78, in __call__
+    return self.registry()
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\util\_collections.py", line 1022, in __call__
+    return self.registry.setdefault(key, self.createfunc())
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\orm\session.py", line 3300, in __call__
+    return self.class_(**local_kw)
+  File "D:\virtualenv\flask\lib\site-packages\flask_sqlalchemy\__init__.py", line 137, in __init__
+    track_modifications = app.config['SQLALCHEMY_TRACK_MODIFICATIONS']
+KeyError: 'SQLALCHEMY_TRACK_MODIFICATIONS'
+Exception on /favicon.ico [GET]
+Traceback (most recent call last):
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\util\_collections.py", line 1020, in __call__
+    return self.registry[key]
+KeyError: 13356
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\virtualenv\flask\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\virtualenv\flask\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\virtualenv\flask\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\virtualenv\flask\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\virtualenv\flask\lib\site-packages\flask\app.py", line 1948, in full_dispatch_request
+    rv = self.preprocess_request()
+  File "D:\virtualenv\flask\lib\site-packages\flask\app.py", line 2242, in preprocess_request
+    rv = func()
+  File "C:/Users/75834/Desktop/BuyNow/app.py", line 385, in my_before_quest
+    user = User.query.filter(User.email == email).first()
+  File "D:\virtualenv\flask\lib\site-packages\flask_sqlalchemy\__init__.py", line 514, in __get__
+    return type.query_class(mapper, session=self.sa.session())
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\orm\scoping.py", line 78, in __call__
+    return self.registry()
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\util\_collections.py", line 1022, in __call__
+    return self.registry.setdefault(key, self.createfunc())
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\orm\session.py", line 3300, in __call__
+    return self.class_(**local_kw)
+  File "D:\virtualenv\flask\lib\site-packages\flask_sqlalchemy\__init__.py", line 137, in __init__
+    track_modifications = app.config['SQLALCHEMY_TRACK_MODIFICATIONS']
+KeyError: 'SQLALCHEMY_TRACK_MODIFICATIONS'
+Exception on / [GET]
+Traceback (most recent call last):
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\util\_collections.py", line 1020, in __call__
+    return self.registry[key]
+KeyError: 4524
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\virtualenv\flask\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\virtualenv\flask\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\virtualenv\flask\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\virtualenv\flask\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\virtualenv\flask\lib\site-packages\flask\app.py", line 1948, in full_dispatch_request
+    rv = self.preprocess_request()
+  File "D:\virtualenv\flask\lib\site-packages\flask\app.py", line 2242, in preprocess_request
+    rv = func()
+  File "C:/Users/75834/Desktop/BuyNow/app.py", line 385, in my_before_quest
+    user = User.query.filter(User.email == email).first()
+  File "D:\virtualenv\flask\lib\site-packages\flask_sqlalchemy\__init__.py", line 514, in __get__
+    return type.query_class(mapper, session=self.sa.session())
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\orm\scoping.py", line 78, in __call__
+    return self.registry()
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\util\_collections.py", line 1022, in __call__
+    return self.registry.setdefault(key, self.createfunc())
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\orm\session.py", line 3300, in __call__
+    return self.class_(**local_kw)
+  File "D:\virtualenv\flask\lib\site-packages\flask_sqlalchemy\__init__.py", line 137, in __init__
+    track_modifications = app.config['SQLALCHEMY_TRACK_MODIFICATIONS']
+KeyError: 'SQLALCHEMY_TRACK_MODIFICATIONS'
+Exception on /favicon.ico [GET]
+Traceback (most recent call last):
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\util\_collections.py", line 1020, in __call__
+    return self.registry[key]
+KeyError: 18316
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\virtualenv\flask\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\virtualenv\flask\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\virtualenv\flask\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\virtualenv\flask\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\virtualenv\flask\lib\site-packages\flask\app.py", line 1948, in full_dispatch_request
+    rv = self.preprocess_request()
+  File "D:\virtualenv\flask\lib\site-packages\flask\app.py", line 2242, in preprocess_request
+    rv = func()
+  File "C:/Users/75834/Desktop/BuyNow/app.py", line 385, in my_before_quest
+    user = User.query.filter(User.email == email).first()
+  File "D:\virtualenv\flask\lib\site-packages\flask_sqlalchemy\__init__.py", line 514, in __get__
+    return type.query_class(mapper, session=self.sa.session())
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\orm\scoping.py", line 78, in __call__
+    return self.registry()
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\util\_collections.py", line 1022, in __call__
+    return self.registry.setdefault(key, self.createfunc())
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\orm\session.py", line 3300, in __call__
+    return self.class_(**local_kw)
+  File "D:\virtualenv\flask\lib\site-packages\flask_sqlalchemy\__init__.py", line 137, in __init__
+    track_modifications = app.config['SQLALCHEMY_TRACK_MODIFICATIONS']
+KeyError: 'SQLALCHEMY_TRACK_MODIFICATIONS'
+Exception on / [GET]
+Traceback (most recent call last):
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\util\_collections.py", line 1020, in __call__
+    return self.registry[key]
+KeyError: 2492
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\virtualenv\flask\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\virtualenv\flask\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\virtualenv\flask\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\virtualenv\flask\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\virtualenv\flask\lib\site-packages\flask\app.py", line 1948, in full_dispatch_request
+    rv = self.preprocess_request()
+  File "D:\virtualenv\flask\lib\site-packages\flask\app.py", line 2242, in preprocess_request
+    rv = func()
+  File "C:/Users/75834/Desktop/BuyNow/app.py", line 388, in my_before_quest
+    user = User.query.filter(User.email == email).first()
+  File "D:\virtualenv\flask\lib\site-packages\flask_sqlalchemy\__init__.py", line 514, in __get__
+    return type.query_class(mapper, session=self.sa.session())
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\orm\scoping.py", line 78, in __call__
+    return self.registry()
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\util\_collections.py", line 1022, in __call__
+    return self.registry.setdefault(key, self.createfunc())
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\orm\session.py", line 3300, in __call__
+    return self.class_(**local_kw)
+  File "D:\virtualenv\flask\lib\site-packages\flask_sqlalchemy\__init__.py", line 137, in __init__
+    track_modifications = app.config['SQLALCHEMY_TRACK_MODIFICATIONS']
+KeyError: 'SQLALCHEMY_TRACK_MODIFICATIONS'
+Exception on /favicon.ico [GET]
+Traceback (most recent call last):
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\util\_collections.py", line 1020, in __call__
+    return self.registry[key]
+KeyError: 10172
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\virtualenv\flask\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\virtualenv\flask\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\virtualenv\flask\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\virtualenv\flask\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\virtualenv\flask\lib\site-packages\flask\app.py", line 1948, in full_dispatch_request
+    rv = self.preprocess_request()
+  File "D:\virtualenv\flask\lib\site-packages\flask\app.py", line 2242, in preprocess_request
+    rv = func()
+  File "C:/Users/75834/Desktop/BuyNow/app.py", line 388, in my_before_quest
+    user = User.query.filter(User.email == email).first()
+  File "D:\virtualenv\flask\lib\site-packages\flask_sqlalchemy\__init__.py", line 514, in __get__
+    return type.query_class(mapper, session=self.sa.session())
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\orm\scoping.py", line 78, in __call__
+    return self.registry()
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\util\_collections.py", line 1022, in __call__
+    return self.registry.setdefault(key, self.createfunc())
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\orm\session.py", line 3300, in __call__
+    return self.class_(**local_kw)
+  File "D:\virtualenv\flask\lib\site-packages\flask_sqlalchemy\__init__.py", line 137, in __init__
+    track_modifications = app.config['SQLALCHEMY_TRACK_MODIFICATIONS']
+KeyError: 'SQLALCHEMY_TRACK_MODIFICATIONS'
+Exception on / [GET]
+Traceback (most recent call last):
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\engine\base.py", line 1277, in _execute_context
+    cursor, statement, parameters, context
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\engine\default.py", line 593, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: user
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\virtualenv\flask\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\virtualenv\flask\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\virtualenv\flask\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\virtualenv\flask\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\virtualenv\flask\lib\site-packages\flask\app.py", line 1948, in full_dispatch_request
+    rv = self.preprocess_request()
+  File "D:\virtualenv\flask\lib\site-packages\flask\app.py", line 2242, in preprocess_request
+    rv = func()
+  File "C:/Users/75834/Desktop/BuyNow/app.py", line 390, in my_before_quest
+    user = User.query.filter(User.email == email).first()
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\orm\query.py", line 3429, in first
+    ret = list(self[0:1])
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\orm\query.py", line 3203, in __getitem__
+    return list(res)
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\orm\query.py", line 3535, in __iter__
+    return self._execute_and_instances(context)
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\orm\query.py", line 3560, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\engine\base.py", line 1011, in execute
+    return meth(self, multiparams, params)
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\sql\elements.py", line 298, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\engine\base.py", line 1130, in _execute_clauseelement
+    distilled_params,
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\engine\base.py", line 1317, in _execute_context
+    e, statement, parameters, cursor, context
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\engine\base.py", line 1511, in _handle_dbapi_exception
+    sqlalchemy_exception, with_traceback=exc_info[2], from_=e
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\util\compat.py", line 182, in raise_
+    raise exception
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\engine\base.py", line 1277, in _execute_context
+    cursor, statement, parameters, context
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\engine\default.py", line 593, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: user
+[SQL: SELECT user.id AS user_id, user.username AS user_username, user.email AS user_email, user.password AS user_password, user.question AS user_question, user.answer AS user_answer, user.cart_id AS user_cart_id, user.wishlist_id AS user_wishlist_id 
+FROM user 
+WHERE user.email = ?
+ LIMIT ? OFFSET ?]
+[parameters: ('758343984@qq.com', 1, 0)]
+(Background on this error at: http://sqlalche.me/e/13/e3q8)
+Exception on /favicon.ico [GET]
+Traceback (most recent call last):
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\engine\base.py", line 1277, in _execute_context
+    cursor, statement, parameters, context
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\engine\default.py", line 593, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: user
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\virtualenv\flask\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\virtualenv\flask\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\virtualenv\flask\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\virtualenv\flask\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\virtualenv\flask\lib\site-packages\flask\app.py", line 1948, in full_dispatch_request
+    rv = self.preprocess_request()
+  File "D:\virtualenv\flask\lib\site-packages\flask\app.py", line 2242, in preprocess_request
+    rv = func()
+  File "C:/Users/75834/Desktop/BuyNow/app.py", line 390, in my_before_quest
+    user = User.query.filter(User.email == email).first()
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\orm\query.py", line 3429, in first
+    ret = list(self[0:1])
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\orm\query.py", line 3203, in __getitem__
+    return list(res)
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\orm\query.py", line 3535, in __iter__
+    return self._execute_and_instances(context)
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\orm\query.py", line 3560, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\engine\base.py", line 1011, in execute
+    return meth(self, multiparams, params)
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\sql\elements.py", line 298, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\engine\base.py", line 1130, in _execute_clauseelement
+    distilled_params,
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\engine\base.py", line 1317, in _execute_context
+    e, statement, parameters, cursor, context
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\engine\base.py", line 1511, in _handle_dbapi_exception
+    sqlalchemy_exception, with_traceback=exc_info[2], from_=e
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\util\compat.py", line 182, in raise_
+    raise exception
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\engine\base.py", line 1277, in _execute_context
+    cursor, statement, parameters, context
+  File "D:\virtualenv\flask\lib\site-packages\sqlalchemy\engine\default.py", line 593, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: user
+[SQL: SELECT user.id AS user_id, user.username AS user_username, user.email AS user_email, user.password AS user_password, user.question AS user_question, user.answer AS user_answer, user.cart_id AS user_cart_id, user.wishlist_id AS user_wishlist_id 
+FROM user 
+WHERE user.email = ?
+ LIMIT ? OFFSET ?]
+[parameters: ('758343984@qq.com', 1, 0)]
+(Background on this error at: http://sqlalche.me/e/13/e3q8)
