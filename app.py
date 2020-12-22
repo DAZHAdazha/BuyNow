@@ -9,6 +9,7 @@ import json
 from werkzeug.security import generate_password_hash, check_password_hash
 from functools import wraps
 from flask_sqlalchemy import SQLAlchemy
+import os
 # import time
 # from sqlalchemy import func
 # from logging import FileHandler
@@ -55,7 +56,11 @@ passing_data = {'signup_user': 0}
 # config database URL here
 # format: dialect+driver://username:password@host:port/database
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:fengyunjia@127.0.0.1:3306/buynow'
+basedir = os.path.abspath(os.path.dirname(__file__))
+SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'app.db')
+
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:fengyunjia@127.0.0.1:3306/buynow'
+app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # SQLALCHEMY_DATABASE_URI = 'mysql://root:fengyunjia@127.0.0.1:3306/buynow'
 # whether open dynamic modification, if it is on, server performance will be curtailed, and this API will be abandoned, thus False is recommended
