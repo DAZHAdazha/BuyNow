@@ -507,6 +507,7 @@ def wishlist():
     else:
         user_id = g.user.id
         product_id = request.form.get('product_id')
+        product_quantity = int(request.form.get('product_quantity'))
         user = User.query.filter(User.id == user_id).first()
         product = Product.query.filter(Product.id == product_id).first()
         flag = 0
@@ -515,13 +516,13 @@ def wishlist():
                 flag += 1
         if flag==len(user.cart.cartDetails):
             user.cart.product_number_sum += 1
-            new_cartDetail = CartDetail(product_id=product_id, product_number=1,
+            new_cartDetail = CartDetail(product_id=product_id, product_number=product_quantity,
                                         product_sum=product.product_price, cart_id=user.cart_id)
             db.session.add(new_cartDetail)
         else:
             for i in user.cart.cartDetails:
                 if int(i.product_id)==int(product_id):
-                    i.product_number += 1
+                    i.product_number += product_quantity
                     i.product_sum += product.product_price
                     db.session.add(i)
         user.cart.sum += product.product_price
@@ -616,4 +617,4 @@ if __name__ == '__main__':
     # print(first_user.cart.cartDetails[0].product_number)
     # print(first_user.cart.cartDetails[1].product_number)
 
-    app.run()
+    app.run(debug=True)

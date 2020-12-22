@@ -733,7 +733,7 @@ jQuery(function ($) {
 		$(".cart_item").on('click',function(){
 			var product_id = parseInt(this.name);
 			var new_path = "./wishlist.html";
-			$.post(new_path,{product_id:product_id},
+			$.post(new_path,{product_id:product_id, product_quantity:1},
 				function(data){
 						var href = "./cart.html";
 						window.location.replace(href);
@@ -765,6 +765,21 @@ jQuery(function ($) {
 
 		$(".back").on('click', function(){
 			window.location.replace("./index.html");
+		})
+
+		$(".product-detail-cart").on('click',function(){
+			var product_name = $(".product-name").text();
+			var product_quantity = parseInt($(".product-quantity").val());
+			var product_id = convertId(product_name);
+			console.log(product_id);
+			console.log(product_name);
+			console.log(product_quantity);
+			var new_path = "./wishlist.html";
+			$.post(new_path,{product_id:product_id, product_quantity:product_quantity},
+				function(data){
+						var href = "./cart.html";
+						window.location.replace(href);
+				});  
 		})
 
 }(jQuery));
