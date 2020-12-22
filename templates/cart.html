@@ -1,0 +1,110 @@
+﻿{% extends './template.html' %}
+{% block main %}
+ <!-- Start Page Banner -->
+ <div class="page-title-area">
+    <div class="container">
+        <div class="page-title-content">
+            <h2>Cart</h2>
+
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li>Cart</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- End Page Banner -->
+
+<!-- Start Cart Area -->
+<section class="cart-area ptb-50">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-12 cartHtml">
+                <form>
+                    <div class="cart-table table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Product</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Unit Price</th>
+                                    <th scope="col">Quantity</th>
+                                    <th scope="col">Total</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                {% for i in cart_info %}
+                                
+                                <tr>
+                                    <td class="product-thumbnail">
+                                        <!-- <a href="#" class="remove"><i class='bx bx-x'></i></a> -->
+
+                                        <a href="{{ i.product_detail }}">
+                                            <img src="{{ url_for('static', filename=i.product_url) }}" alt="item">
+                                        </a>
+                                    </td>
+
+                                    <td class="product-name">
+                                        <a href="{{ i.product_detail }}">{{ i.product_name }}</a>
+                                    </td>
+
+                                    <td class="product-price">
+                                        <span class="unit-amount">${{ i.product_price }}</span>
+                                    </td>
+
+                                    <td class="product-quantity">
+                                        <div class="input-counter">
+                                            <span class="minus-btn"><i class='bx bx-minus'></i></span>
+                                            <input type="text" value="{{ i.product_number }}">
+                                            <span class="plus-btn"><i class='bx bx-plus'></i></span>
+                                        </div>
+                                    </td>
+
+                                    <td class="product-subtotal">
+                                        <span class="subtotal-amount">${{ i.product_sum }}</span>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="cart-buttons">
+                        <div class="row align-items-center">
+                            <div class="col-lg-7 col-sm-7 col-md-7">
+                            </div>
+
+                            <div class="col-lg-5 col-sm-5 col-md-5 text-right">
+                                <a id="update" href="#" class="default-btn">
+                                    Update Cart
+                                    <span></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-lg-4 col-md-12">
+                <div class="cart-totals">
+                    <h3>Cart Totals</h3>
+
+                    <ul>
+                        <li>Subtotal<span>$ 599.00</span></li>
+                        <li>Shipping <span>$30.00</span></li>
+                        <li>Total <span>$599.00</span></li>
+                        <li>Payable Total <span>$599.00</span></li>
+                    </ul>
+
+                    <a id="checkout" href="#" class="default-btn">
+                        Proceed to Checkout
+                        <span></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Cart Area -->
+{% endblock %}

@@ -1,0 +1,41 @@
+﻿{% extends './template.html' %}
+{% block main %}
+ <!-- Start Page Banner -->
+ <div class="page-title-area">
+    <div class="container">
+        <div class="page-title-content">
+            <h2 style="color: #60E66B;">Order success!</h2>
+            <div style="font-size: 30px;">
+                There are 
+                <span id="time" style="color: #60E66B;">5</span>
+                seconds to jump
+            </div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li >Order success!</li>
+                
+                <script>
+                    function countDown(){
+                    var time = document.getElementById("time");
+                    if(time.innerHTML == 0){
+                        window.location.href="./index.html";
+                    }else{
+                        time.innerHTML = time.innerHTML-1;
+                    }
+                }
+                window.setInterval("countDown()",1000);
+                </script>
+
+                    
+
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- End Page Banner -->
+
+<!-- Start Error Area -->
+    <h1>
+    </h1>
+<!-- End Error Area -->
+{% endblock %}

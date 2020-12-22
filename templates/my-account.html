@@ -1,0 +1,291 @@
+﻿{% extends './template.html' %}
+{% block main %}
+<!-- Start Page Banner -->
+<div class="page-title-area">
+    <div class="container">
+        <div class="page-title-content">
+            <h2>My account</h2>
+
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li>My account</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- End Page Banner -->
+
+<!-- Start Pricing Area -->
+<section class="pricing-area pt-50 pb-20">
+    <div class="container">
+        <div class="tab pricing-list-tab">
+            <ul class="tabs">
+                <li>
+                    <a href="#">User Info</a>
+                </li>
+                
+                <li>
+                    <a href="#">Premium</a>
+                </li>
+            </ul>
+
+            <div class="tab_content">
+                <div class="tabs_item">
+                    <div class="row">
+                        <div class="col-lg-2 col-sm-6">
+                           
+                        </div>
+
+                        <div class="col-lg-8 col-sm-6">
+                            <div class="single-pricing-table">
+                                <div class="pricing-header">
+                                    <h3>Username</h3>
+                                </div>
+
+                                <div class="price">{{ user.username }}</div>
+
+                                <ul class="pricing-features">
+                                    <li>
+                                        User ID:
+                                    </li>
+                                    <li>
+                                        &nbsp; &nbsp; &nbsp; {{ user.id }}
+                                    </li>
+
+                                    <li>
+                                        Email:
+                                    </li>
+                                    <li>
+                                        &nbsp; &nbsp; &nbsp; {{ user.email }}
+                                    </li>
+
+                                    <li>
+                                        Question:
+                                    </li>
+                                    <li>
+                                        &nbsp; &nbsp; &nbsp; {{ user.question }}
+                                    </li>
+
+                                    <li>
+                                        Answer:
+                                    </li>
+                                    <li>
+                                        &nbsp; &nbsp; &nbsp; {{ user.answer }}
+                                    </li>
+                                    
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2 col-sm-6">
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tabs_item">
+                    <div class="row">
+                        <div class="col-lg-4 col-sm-6">
+                            <div class="single-pricing-table">
+                                <div class="pricing-header">
+                                    <h3>Standard</h3>
+                                </div>
+
+                                <div class="price">$20</div>
+
+                                <ul class="pricing-features">
+                                    <li>
+                                        Discount on category below:
+                                    </li>
+                                    <li>
+                                        <i class="flaticon-check"></i>
+                                        Computers & Accessories
+                                    </li>
+        
+                                    <li>
+                                        <i class="flaticon-check"></i>
+                                        Audio & Home Theater
+                                    </li>
+        
+                                    <li>
+                                        <i class="flaticon-check"></i>
+                                        Laptop
+                                    </li>
+        
+                                    <li>
+                                        &nbsp;
+                                        
+                                    </li>
+        
+                                    <li>
+                                        &nbsp;
+                                        
+                                    </li>
+        
+                                    <li>
+                                        &nbsp;
+                                        
+                                    </li>
+        
+                                    <li>
+                                        
+                                        &nbsp;
+                                    </li>
+        
+                                    <li>
+                                        &nbsp;
+                                        
+                                    </li>
+        
+                                    <li>
+                                        &nbsp;
+                                        
+                                    </li>
+        
+                                    <li>
+                                        
+                                        &nbsp;
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-sm-6">
+                            <div class="single-pricing-table">
+                                <div class="pricing-header">
+                                    <h3>Premium</h3>
+                                </div>
+
+                                <div class="price">$30</div>
+
+                                <ul class="pricing-features">
+                                    <li>
+                                        Discount on category below:
+                                    </li>
+                                    <li>
+                                        <i class="flaticon-check"></i>
+                                        Computers & Accessories
+                                    </li>
+        
+                                    <li>
+                                        <i class="flaticon-check"></i>
+                                        Audio & Home Theater
+                                    </li>
+        
+                                    <li>
+                                        <i class="flaticon-check"></i>
+                                        Laptop
+                                    </li>
+        
+                                    <li>
+                                        <i class="flaticon-check"></i>
+                                        TV & Accessories
+                                    </li>
+        
+                                    <li>
+                                        <i class="flaticon-check"></i>
+                                        Mobiles & Tablets
+                                    </li>
+        
+                                    <li>
+                                        <i class="flaticon-check"></i>
+                                        Headphone & Earphone
+                                    </li>
+        
+                                    <li>
+                                        &nbsp;
+                                        
+                                    </li>
+        
+                                    <li>
+                                        &nbsp;
+                                        
+                                    </li>
+        
+                                    <li>
+                                        &nbsp;
+                                        
+                                    </li>
+        
+                                    <li>
+                                        &nbsp;
+                                        
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-sm-6">
+                            <div class="single-pricing-table">
+                                <div class="pricing-header">
+                                    <h3>Advanced</h3>
+                                </div>
+
+                                <div class="price">$40</div>
+
+                                <ul class="pricing-features">
+                                    <li>
+                                        Discount on category below:
+                                    </li>
+                                    <li>
+                                        <i class="flaticon-check"></i>
+                                        Computers & Accessories
+                                    </li>
+        
+                                    <li>
+                                        <i class="flaticon-check"></i>
+                                        Audio & Home Theater
+                                    </li>
+        
+                                    <li>
+                                        <i class="flaticon-check"></i>
+                                        Laptop
+                                    </li>
+        
+                                    <li>
+                                        <i class="flaticon-check"></i>
+                                        TV & Accessories
+                                    </li>
+        
+                                    <li>
+                                        <i class="flaticon-check"></i>
+                                        Mobiles & Tablets
+                                    </li>
+        
+                                    <li>
+                                        <i class="flaticon-check"></i>
+                                        Headphone & Earphone
+                                    </li>
+        
+                                    <li>
+                                        <i class="flaticon-check"></i>
+                                        Battery & Accessories
+                                    </li>
+        
+                                    <li>
+                                        <i class="flaticon-check"></i>
+                                        Watches
+                                    </li>
+        
+                                    <li>
+                                        <i class="flaticon-check"></i>
+                                        Cameras
+                                    </li>
+        
+                                    <li>
+                                        <i class="flaticon-check"></i>
+                                        Accessories
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Pricing Area -->
+
+{% endblock %}
+

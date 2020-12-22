@@ -1,0 +1,121 @@
+﻿{% extends './template.html' %}
+{% block main %}
+<!-- Start Page Banner -->
+<div class="page-title-area">
+    <div class="container">
+        <div class="page-title-content">
+            <h2>Login</h2>
+
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li>Login</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- End Page Banner -->
+
+<!-- Start Login Area -->
+<section class="login-area ptb-50">
+    <div class="container">
+        <div class="login-form">
+            <h2>Forget your password</h2>
+          
+                <form id="forgetForm">
+                    <div class="form-group">
+                        <input id="email" type="email" class="form-control" placeholder="Email" required autocomplete="off">
+                    </div> 
+                      <div class="form-group">
+                        <select id="question" class="selectpicker">
+                            <option>What is the name of your pet?</option>
+                            <option>What is the name of your mother?</option>
+                            <option>What is the name of your father?</option>
+                            <option>What is your favorite food?</option>
+                      </select>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+
+                <div class="form-group">
+                    <input id="answer" type="text" class="form-control" placeholder="Answer The Question" required autocomplete="off">
+                </div>
+
+                <div class="form-group">
+                    <input id="password" type="password" class="form-control" placeholder="New Password" required autocomplete="off">
+                </div>
+
+                <div class="row align-items-center">
+                    
+                </div>
+
+                <button type="submit">Reset your password</button>
+            </form>
+
+            <div class="important-text">
+                <p>Don't have an account? <a href="register.html">Register now!</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Login Area -->
+
+<!-- Start Support Area -->
+<section class="support-area">
+    <div class="container">
+        <div class="support-inner-box">
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="single-support">
+                        <div class="icon">
+                            <i class="flaticon-free-shipping"></i>
+                        </div>
+
+                        <div class="support-content">
+                            <h3>Free Shipping Worldwide</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="single-support">
+                        <div class="icon">
+                            <i class="flaticon-return"></i>
+                        </div>
+
+                        <div class="support-content">
+                            <h3>30 Days Money Returns</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="single-support">
+                        <div class="icon">
+                            <i class="flaticon-security"></i>
+                        </div>
+
+                        <div class="support-content">
+                            <h3>100% Secure Payment</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="single-support">
+                        <div class="icon">
+                            <i class="flaticon-support"></i>
+                        </div>
+
+                        <div class="support-content">
+                            <h3>24/7 Customer Support</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Support Area -->
+{% endblock %}
+
