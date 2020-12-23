@@ -69,8 +69,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # SQLALCHEMY_DB
 
 
-
-
 def login_required(func):
     @wraps(func)
     def wrapper(*args, **kwargs):
@@ -79,7 +77,6 @@ def login_required(func):
         else:
             return redirect(url_for('login'))
     return wrapper
-
 
 
 class User(db.Model):
@@ -136,6 +133,7 @@ class Cart(db.Model):
     # 对应order表的数据
     user = db.relationship('User', uselist=False, backref=db.backref("cart"))
 
+
 class Wishlist(db.Model):
     __tablename__ = 'wishlist'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -144,6 +142,7 @@ class Wishlist(db.Model):
     # 第一参数为要关联的表的模型的名字,作为正向引用，backref表示反向引用，以后可以通过User.orders反向引用来通过user对象查找
     # 对应order表的数据
     user = db.relationship('User', uselist=False, backref=db.backref("wishlist"))
+
 
 class CartDetail(db.Model):
     __tablename__ = 'cartDetail'
@@ -166,6 +165,7 @@ class WishlistDetail(db.Model):
     wishlist = db.relationship('Wishlist', backref=db.backref("wishlistDetails"))
     product = db.relationship('Product')
 
+
 class OrderDetail(db.Model):
     __tablename__ = 'orderDetail'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -185,7 +185,6 @@ class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     product_name = db.Column(db.Text(50), nullable=True)
     product_price = db.Column(db.Float(50), nullable=True)
-
 
 
 # this decorator will project to a url view function
@@ -364,29 +363,6 @@ def my_context_processor():
 def logout():
     del session['user_email']
     return redirect(url_for('login'))
-
-
-# function to change task status(completed or uncompleted)
-@app.route('/taskStatus/<task_id>')
-@login_required
-def taskStatus(task_id):
-    # record = Record.query.filter(task_id == Record.id).first()
-    # if the record is founded
-    # if record:
-        # if it is true, then set to false, and erase finish time
-        # if record.status == True:
-        #     record.status = False
-        #     record.finish_time = None
-        # else, set to true, and update finish time
-        # else:
-        #     record.status = True
-        #     current_time = datetime.datetime.now()
-        #     record.finish_time = current_time
-        # db.session.commit()
-    # else:
-    #     return render_template('./error-404.html')
-    # return redirect(request.referrer)
-    pass
 
 
 # before_request: execute before requests,working as hook function and execute before view functions, and this function is
@@ -575,15 +551,6 @@ def orderDetail(order_id):
                     }
         detail_info.append(new_info)
     return render_template('./order-detail.html', order_id=order_id, detail_info=detail_info)
-    # user_id = g.user.id
-    # user = User.query.filter(User.id == user_id).first()
-    # order_info = []
-    # for i in user.orders:
-    #     new_info = {'order_time': str(i.time)[:-7],
-    #                 'order_sum': i.sum,
-    #                 'order_product_number_sum': i.product_number_sum,
-    #                 'order_id': i.id}
-    #     order_info.append(new_info)
 
 
 if __name__ == '__main__':

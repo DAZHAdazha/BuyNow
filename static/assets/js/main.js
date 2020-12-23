@@ -321,8 +321,17 @@ jQuery(function ($) {
 			if (event.isDefaultPrevented()) {
 				formErrorS();
 			} else {
-				event.preventDefault();
-				ssubmitForm();
+				if($('#password').val().length<8){
+					formErrorS();
+					$(".warning")[0].innerText = "Password length should over 8 characters";
+					event.preventDefault();
+				}
+				else{
+					event.preventDefault();
+					ssubmitForm();
+				}
+
+				
 			}
 		});
 	
@@ -436,36 +445,7 @@ jQuery(function ($) {
                 }
             });  
 		}
-
-
-		$(".newsletter-form").validator().on("submit", function (event) {
-			if (event.isDefaultPrevented()) {
-			}
-			else {
-				event.preventDefault();
-			}
-		});
-		function callbackFunction (resp) {
-			if (resp.result === "success") {
-				formSuccessSub();
-			}
-			else {
-				formErrorSub();
-			}
-		}
-		function formSuccessSub(){
-			$(".newsletter-form")[0].reset();
-			submitMSGSub(true, "Thank you for subscribing!");
-			setTimeout(function() {
-				$("#validator-newsletter").addClass('hide');
-			}, 4000)
-		}
-		function formErrorSub(){
-			$(".newsletter-form").addClass("animated shake");
-			setTimeout(function() {
-				$(".newsletter-form").removeClass("animated shake");
-			}, 1000)
-		}
+		
 		function formErrorS(){
 			$("#signUpForm").addClass("animated shake");
 			setTimeout(function() {
