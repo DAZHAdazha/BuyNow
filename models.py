@@ -45,6 +45,7 @@ class Order(db.Model):
     # 对应order表的数据
     user = db.relationship('User', backref=db.backref("orders"))
 
+
 class Cart(db.Model):
     __tablename__ = 'cart'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -55,6 +56,7 @@ class Cart(db.Model):
     # 对应order表的数据
     user = db.relationship('User', uselist=False, backref=db.backref("cart"))
 
+
 class Wishlist(db.Model):
     __tablename__ = 'wishlist'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -63,6 +65,7 @@ class Wishlist(db.Model):
     # 第一参数为要关联的表的模型的名字,作为正向引用，backref表示反向引用，以后可以通过User.orders反向引用来通过user对象查找
     # 对应order表的数据
     user = db.relationship('User', uselist=False, backref=db.backref("wishlist"))
+
 
 class CartDetail(db.Model):
     __tablename__ = 'cartDetail'
@@ -84,6 +87,7 @@ class WishlistDetail(db.Model):
     wishlist_id = db.Column(db.Integer, db.ForeignKey('wishlist.id'), nullable=True)
     wishlist = db.relationship('Wishlist', backref=db.backref("wishlistDetails"))
     product = db.relationship('Product')
+
 
 class OrderDetail(db.Model):
     __tablename__ = 'orderDetail'

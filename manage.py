@@ -1,6 +1,6 @@
 from flask_script import Manager
 # it need app as argument to create Manager object
-from buynow import app
+from app import app
 from db_script import db_manager
 from flask_migrate import Migrate, MigrateCommand
 from exts import db

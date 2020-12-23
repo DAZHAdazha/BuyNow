@@ -75,7 +75,10 @@
                                 <div class="modal-newsletter-wrap">
                                     <div class="content">
                                         <h3>Login to BuyNow</h3>
-                                        <p>Sign up for our mailing list to get the latest updates & offers.</p>
+                                        <p>Sign up for our mailing list to get the latest updates & offers. <span>
+                                            &nbsp;<a style="text-decoration: underline;" href="register.html" > Sign up </a>&nbsp;
+                                        </span>
+                                    </p>
                                     </div>
 
                                     <form id="modal-form" class="newsletter-form">
@@ -100,6 +103,7 @@
                                             <div class="col-lg-6 col-md-6 col-sm-6 lost-your-password">
                                                 <a href="forget.html" class="lost-your-password">Forgot password?</a>
                                             </div>
+
                                         </div>
 
                                         <button type="submit">Login</button>
@@ -213,6 +217,11 @@
                                     0
                                     {% endif %}
                                 </span></a>
+                        </li>
+                        <li>
+                            <a href="order.html">
+                                <img class="flation-order" style="margin-bottom: 15px;" src="{{ url_for('static', filename='assets/img/order.svg') }}"onmouseover="hover(this);" onmouseout="unhover(this);" alt="">
+                            </a>
                         </li>
                     </ul>
                 </div>

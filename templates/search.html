@@ -20,19 +20,13 @@
             <div class="container">
                 <div class="wishlist-table table-responsive">
                     <div class="wishlist-title">
-                        <h2>My  Search Result</h2>
+                        <h2>My Search Result</h2>
                     </div>
         
                     <table class="table table-bordered">
                         <tbody>
                             {% for i in search_info %}
                             <tr>
-                                <td class="product-remove">
-                                    <a href="#" class="remove">
-                                        <i class='bx bx-x delete'></i>
-                                    </a>
-                                </td>
-        
                                 <td class="product-thumbnail">
                                     <a href="#">
                                         <img src="{{ url_for('static', filename=i.product_url) }}" alt="item">

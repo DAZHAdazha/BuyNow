@@ -399,7 +399,7 @@ def my_before_quest():
         g.user = user
 
 
-@app.route('/cart.html')
+@app.route('/cart.html', methods=['POST', 'GET'])
 @login_required
 def cart():
     if request.method == 'POST':
@@ -436,7 +436,7 @@ def cart():
                         'product_sum': i.product_sum,
                         'product_url': 'assets/img/cart/cart-' + str(i.product_id) + '.png'}
             cart_info.append(new_info)
-        return render_template('./cart.html', product_sum=product_sum, cart_info=cart_info)
+        return render_template('./cart.html', product_sum=product_sum, cart_info=cart_info[::-1])
 
 
 @app.route('/updateCart', methods=['POST'])
@@ -466,10 +466,10 @@ def addWishlist():
     wishlist = Wishlist.query.filter(Wishlist.id == wishlist_id).first()
     flag = 0
     for i in wishlist.wishlistDetails:
-        if i.product_id==int(product_id):
+        if i.product_id == int(product_id):
             flag = 1
             break
-    if flag==0:
+    if flag == 0:
         new_wishlistDetail = WishlistDetail(product_id=product_id, wishlist_id=wishlist_id)
         db.session.add(new_wishlistDetail)
         db.session.commit()
@@ -483,7 +483,7 @@ def removeWishlist():
     product_id = request.form.get("product_id")
     wishlist = Wishlist.query.filter(Wishlist.id == wishlist_id).first()
     for i in wishlist.wishlistDetails:
-        if i.product_id==int(product_id):
+        if i.product_id == int(product_id):
             db.session.delete(i)
     db.session.commit()
     return render_template('./wishlist.html')
@@ -503,7 +503,7 @@ def wishlist():
                         'product_price': i.product.product_price,
                         'product_url': 'assets/img/cart/cart-' + str(i.product_id) + '.png'}
             wishlist_info.append(new_info)
-        return render_template('./wishlist.html', wishlist_info=wishlist_info)
+        return render_template('./wishlist.html', wishlist_info=wishlist_info[::-1])
     else:
         user_id = g.user.id
         product_id = request.form.get('product_id')
@@ -512,7 +512,7 @@ def wishlist():
         product = Product.query.filter(Product.id == product_id).first()
         flag = 0
         for i in user.cart.cartDetails:
-            if int(i.product_id)!=int(product_id):
+            if int(i.product_id) != int(product_id):
                 flag += 1
         if flag==len(user.cart.cartDetails):
             user.cart.product_number_sum += 1
@@ -544,6 +544,46 @@ def search():
                     'product_url': 'assets/img/cart/cart-' + str(i.id) + '.png'}
         search_info.append(new_info)
     return render_template('./search.html', search_info=search_info)
+
+
+@app.route('/order.html')
+@login_required
+def order():
+    user_id = g.user.id
+    user = User.query.filter(User.id == user_id).first()
+    order_info = []
+    for i in user.orders:
+        new_info = {'order_time': str(i.time)[:-7],
+                    'order_sum': i.sum,
+                    'order_product_number_sum': i.product_number_sum,
+                    'order_id': i.id}
+        order_info.append(new_info)
+    return render_template('./order.html', order_info=order_info[::-1])
+
+
+@app.route('/orderDetail<order_id>', methods=['GET'])
+@login_required
+def orderDetail(order_id):
+    order = Order.query.filter(Order.id == order_id).first()
+    detail_info = []
+    for i in order.orderDetails:
+        new_info = {'product_name': i.product.product_name,
+                    'product_number': i.product_number,
+                    'product_sum': i.product_sum,
+                    'product_href': 'products-details' + str(i.product_id) + '.html',
+                    'product_url': 'assets/img/cart/cart-' + str(i.product_id) + '.png'
+                    }
+        detail_info.append(new_info)
+    return render_template('./order-detail.html', order_id=order_id, detail_info=detail_info)
+    # user_id = g.user.id
+    # user = User.query.filter(User.id == user_id).first()
+    # order_info = []
+    # for i in user.orders:
+    #     new_info = {'order_time': str(i.time)[:-7],
+    #                 'order_sum': i.sum,
+    #                 'order_product_number_sum': i.product_number_sum,
+    #                 'order_id': i.id}
+    #     order_info.append(new_info)
 
 
 if __name__ == '__main__':

@@ -1,3 +1,21 @@
+function hover(element) {
+	setTimeout(function() {
+		element.setAttribute('src', '/static/assets/img/order-red.svg');
+	}, 150)
+}
+
+function unhover(element) {
+	setTimeout(function() {
+		element.setAttribute('src', '/static/assets/img/order.svg');
+	}, 150)
+}
+
+function unhoverBlack(element) {
+	setTimeout(function() {
+		element.setAttribute('src', '/static/assets/img/order-black.svg');
+	}, 150)
+}
+
 jQuery(function ($) {
     'use strict';
 
@@ -722,8 +740,7 @@ jQuery(function ($) {
 		$(".addCartWishlist").on('click',function(){
 			var productName = this.parentNode.parentNode.children[2].innerText;
 			var product_id = convertId(productName);
-			console.log(productName);
-			$.post("./wishlist.html",{product_id:product_id},
+			$.post("./wishlist.html",{product_id:product_id, product_quantity:1},
 				function(data){
 						var href = "./cart.html";
 						window.location.replace(href);
@@ -781,6 +798,14 @@ jQuery(function ($) {
 						window.location.replace(href);
 				});  
 		})
+
+		$(".checkDetails").on('click', function(){
+			var order_id = this.parentNode.parentNode.children[0].innerText;
+			console.log(order_id);
+			var new_path = './orderDetail' + order_id;
+			window.location.replace(new_path); 
+		})
+
 
 }(jQuery));
 
