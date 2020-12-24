@@ -1,5 +1,6 @@
-import flask
-from flask import Flask, render_template, flash, request, redirect, url_for, session, g
+# -*- coding: utf-8 -*-
+# import flask
+from flask import Flask, render_template, request, redirect, url_for, session, g
 import logging
 # import config
 # from exts import db
@@ -10,7 +11,6 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from functools import wraps
 from flask_sqlalchemy import SQLAlchemy
 import os
-# import time
 # from sqlalchemy import func
 # from logging import FileHandler
 # from flask_wtf import FlaskForm
@@ -32,11 +32,12 @@ db.init_app(app)
 # import config file
 # ! app.config.from_object(config)
 # very important! when dividing models file with this script!
-#! db.app = app
+# ! db.app = app
 # to solve the problem of recursive reference
-#! db.init_app(app)
+# ! db.init_app(app)
 
-# solution for conflicts between jinja2 templates loading variable identifier "{{ }}" and jQuery-tmpl plug-in identifier"{{ }}",
+# solution for conflicts between jinja2 templates loading variable identifier
+# "{{ }}" and jQuery-tmpl plug-in identifier"{{ }}",
 # using for passing data from flask to json
 app.jinja_env.variable_start_string = '{{ '
 app.jinja_env.variable_end_string = ' }}'
@@ -45,9 +46,10 @@ app.jinja_env.variable_end_string = ' }}'
 # from datetime import timedelta
 # app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=7)
 
-app.secret_key = 'dazha' # import os; app.secret_key = os.urandom(24) # 用os库自动生成24位的secret key
+app.secret_key = 'dazha'  # import os; app.secret_key = os.urandom(24) # 用os库自动生成24位的secret key
 
-# if there is nested dictionary or object stored in dictionary, "object(dic).attr" could be used in HTML to visit variables
+# if there is nested dictionary or object stored in dictionary,
+# "object(dic).attr" could be used in HTML to visit variables
 # or using the form of "object(dic)['attr']"
 passing_data = {'signup_user': 0}  
 
@@ -63,7 +65,8 @@ SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'app.db')
 app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # SQLALCHEMY_DATABASE_URI = 'mysql://root:fengyunjia@127.0.0.1:3306/buynow'
-# whether open dynamic modification, if it is on, server performance will be curtailed, and this API will be abandoned, thus False is recommended
+# whether open dynamic modification, if it is on, server performance will be curtailed,
+# and this API will be abandoned, thus False is recommended
 # SQLALCHEMY_TRACK_MODIFICATIONS = False
 # SECRET_KEY
 # SQLALCHEMY_DB
@@ -104,9 +107,11 @@ class User(db.Model):
         self.password = generate_password_hash(password)
         self.question = question
         self.answer = answer
+
     def check_password(self, raw_password):
         result = check_password_hash(self.password, raw_password)
         return result
+
     def __repr__(self):
         return '<id:%d username:%s email:%s password:%s question:%s answer:%s>' % (self.id, self.username, self.email,
                                                             self.password, self.question, self.answer)
@@ -188,50 +193,22 @@ class Product(db.Model):
 
 
 # this decorator will project to a url view function
-@app.route('/index.html', methods=['GET', 'POST']) # url
-@app.route('/', methods=['GET', 'POST']) # url
+@app.route('/index.html', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def index(): # view function
     try:
         if g.user:
             pop = 0
     except:
         pop = 1
+    app.logger.info("Someone visited index.html")
     return render_template('./index.html', pop=pop)
-
-
-@app.route('/index-2.html', methods=['GET', 'POST']) # url
-def index2(): # view function
-    try:
-        if g.user:
-            pop = 0
-    except:
-        pop = 1
-    return render_template('./index-2.html', pop=pop)\
-
-
-@app.route('/index-3.html', methods=['GET', 'POST']) # url
-def index3(): # view function
-    try:
-        if g.user:
-            pop = 0
-    except:
-        pop = 1
-    return render_template('./index-3.html', pop=pop)
-
-
-@app.route('/index-4.html', methods=['GET', 'POST']) # url
-def index4(): # view function
-    try:
-        if g.user:
-            pop = 0
-    except:
-        pop = 1
-    return render_template('./index-4.html', pop=pop)
 
 
 # capture 404 error
 @app.errorhandler(404)
 def page_not_found(e):
+    app.logger.error("Error-404 happened.")
     return render_template('./error-404.html'), 404
 
 
@@ -241,6 +218,7 @@ def jump(file):
     try:
         return render_template('./' + file)
     except:
+        app.logger.error("Error-404 happened.")
         return render_template('./error-404.html')
 
 
@@ -248,22 +226,18 @@ def jump(file):
 @app.route('/<file>')
 def jump_to(file):
     try:
+        app.logger.info("Someone visited " + file)
         return render_template('./' + file)
     except:
+        app.logger.error("Error-404 happened.")
         return render_template('./error-404.html')
-
-
-# view function to render the page createTask.html
-@app.route('/createTask.html')
-@login_required
-def createTask():
-    return render_template('./createTask.html')
 
 
 # to render page my-account and passing arguments of 3 type of task counts
 @app.route('/my-account.html')
 @login_required
 def user():
+    app.logger.info(g.user.username + " visited my-account.html")
     return render_template('./my-account.html')
 
 
@@ -277,6 +251,7 @@ def register():
         user = User.query.filter(User.email == data['email']).first()
         # if the email had been used
         if user:
+            app.logger.warning("This email(" + data['email'] + ")had been registered")
             return "This email had been registered"
         # else it could be signed up
         else:
@@ -294,6 +269,7 @@ def register():
             app.logger.info("User " + data['username'] + " registered successfully!")
             return '1'
     elif request.method == 'GET':
+        app.logger.info("Someone visited register.html")
         return render_template('./register.html')
 
 
@@ -318,10 +294,13 @@ def login():
                 app.logger.info("User " + user.username + " log-in successfully!")
                 return '1'
             else:
+                app.logger.warning("This user(" + data['email'] + ")had entered wrong password.")
                 return "Wrong password,try again"
         else:
+            app.logger.warning("This email(" + data['email'] + ")had not been registered.")
             return "Wrong email address,try again"
     else:
+        app.logger.info("Someone visited login.html")
         return render_template('./login.html')
 
 
@@ -332,16 +311,21 @@ def forget():
         user = User.query.filter(User.email == data['email']).first()
         # the user is existed
         if user:
-            if user.question==data['question'] and user.answer==data['answer']:
+            if user.question == data['question'] and user.answer==data['answer']:
                 user.password = data['password']
                 db.session.add(user)
                 db.session.commit()
+                app.logger.warning(user.username + "had reset the password")
                 return '1'
             else:
+                app.logger.warning("This account(" + data['email'] +
+                                   ")cannot be reset because wrong answer to the question.")
                 return "Wrong answer to the question."
         else:
+            app.logger.warning("This email(" + data['email'] + ")had not been created yet.")
             return "Wrong email address,please try again"
     else:
+        app.logger.info("Someone visited forget.html")
         return render_template('./forget.html')
 
 
@@ -365,7 +349,8 @@ def logout():
     return redirect(url_for('login'))
 
 
-# before_request: execute before requests,working as hook function and execute before view functions, and this function is
+# before_request: execute before requests,
+# working as hook function and execute before view functions, and this function is
 # a decorator, it could execute codes before view functions
 @app.before_request
 def my_before_quest():
@@ -388,7 +373,8 @@ def cart():
         order.user = user
         db.session.add(order)
         for i in data['products']:
-            order_detail = OrderDetail(product_id=i['id'], product_number=i['quantity'], product_sum=i['sum'], order_id=order.id)
+            order_detail = OrderDetail(product_id=i['id'],
+                                       product_number=i['quantity'], product_sum=i['sum'], order_id=order.id)
             order_detail.order = order
             db.session.add(order_detail)
         for i in user.cart.cartDetails:
@@ -397,6 +383,7 @@ def cart():
         user.cart.product_number_sum = 0
         db.session.add(user.cart)
         db.session.commit()
+        app.logger.info(g.user.username + " updated the cart")
         return "1"
     else:
         cart_id = g.user.cart_id
@@ -412,6 +399,7 @@ def cart():
                         'product_sum': i.product_sum,
                         'product_url': 'assets/img/cart/cart-' + str(i.product_id) + '.png'}
             cart_info.append(new_info)
+        app.logger.info(g.user.username + " updated the cart")
         return render_template('./cart.html', product_sum=product_sum, cart_info=cart_info[::-1])
 
 
@@ -427,10 +415,11 @@ def updateCart():
         db.session.delete(i)
     for i in data["products"]:
         new_cartDetial = CartDetail(product_id=i["id"], product_number=i["quantity"],
-                                        product_sum=i["sum"], cart_id=cart_id)
+                                    product_sum=i["sum"], cart_id=cart_id)
         db.session.add(new_cartDetial)
     db.session.add(cart)
     db.session.commit()
+    app.logger.info(g.user.username + " updated the cart")
     return "1"
 
 
@@ -449,6 +438,7 @@ def addWishlist():
         new_wishlistDetail = WishlistDetail(product_id=product_id, wishlist_id=wishlist_id)
         db.session.add(new_wishlistDetail)
         db.session.commit()
+    app.logger.info(g.user.username + " added items to the wishlist")
     return render_template('./wishlist.html')
 
 
@@ -462,6 +452,7 @@ def removeWishlist():
         if i.product_id == int(product_id):
             db.session.delete(i)
     db.session.commit()
+    app.logger.info(g.user.username + " removed items in the wishlist")
     return render_template('./wishlist.html')
 
 
@@ -479,6 +470,7 @@ def wishlist():
                         'product_price': i.product.product_price,
                         'product_url': 'assets/img/cart/cart-' + str(i.product_id) + '.png'}
             wishlist_info.append(new_info)
+        app.logger.info(g.user.username + " updated the wishlist")
         return render_template('./wishlist.html', wishlist_info=wishlist_info[::-1])
     else:
         user_id = g.user.id
@@ -490,25 +482,25 @@ def wishlist():
         for i in user.cart.cartDetails:
             if int(i.product_id) != int(product_id):
                 flag += 1
-        if flag==len(user.cart.cartDetails):
+        if flag == len(user.cart.cartDetails):
             user.cart.product_number_sum += 1
             new_cartDetail = CartDetail(product_id=product_id, product_number=product_quantity,
                                         product_sum=product.product_price, cart_id=user.cart_id)
             db.session.add(new_cartDetail)
         else:
             for i in user.cart.cartDetails:
-                if int(i.product_id)==int(product_id):
+                if int(i.product_id) == int(product_id):
                     i.product_number += product_quantity
                     i.product_sum += product.product_price
                     db.session.add(i)
         user.cart.sum += product.product_price
         db.session.add(user.cart)
         db.session.commit()
+        app.logger.info(g.user.username + " updated the cart")
         return '1'
 
 
 @app.route('/search')
-@login_required
 def search():
     q = request.args.get('q')
     products = Product.query.filter(or_(Product.product_name.contains(q), Product.product_price.contains(q))).all()
@@ -519,6 +511,7 @@ def search():
                     'product_price': i.product_price,
                     'product_url': 'assets/img/cart/cart-' + str(i.id) + '.png'}
         search_info.append(new_info)
+    app.logger.info("Someone searched for the products")
     return render_template('./search.html', search_info=search_info)
 
 
@@ -534,6 +527,7 @@ def order():
                     'order_product_number_sum': i.product_number_sum,
                     'order_id': i.id}
         order_info.append(new_info)
+    app.logger.info(g.user.username + " checked the orders")
     return render_template('./order.html', order_info=order_info[::-1])
 
 
@@ -550,6 +544,7 @@ def orderDetail(order_id):
                     'product_url': 'assets/img/cart/cart-' + str(i.product_id) + '.png'
                     }
         detail_info.append(new_info)
+    app.logger.info(g.user.username + " checked the order details")
     return render_template('./order-detail.html', order_id=order_id, detail_info=detail_info)
 
 
@@ -560,9 +555,34 @@ if __name__ == '__main__':
 
     # db.create_all()
 
-    handler = logging.FileHandler('flask.log')
+    handler = logging.FileHandler('all.log')
+    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    app.logger.setLevel(logging.INFO)
+    handler.setFormatter(formatter)
     app.logger.addHandler(handler)
-    # app.logger.info("Info message")
+
+    info_handler = logging.FileHandler('info.log')
+    info_filter = logging.Filter()
+    info_filter.filter = lambda record: record.levelno < logging.WARNING  # 设置过滤等级
+    info_handler.setFormatter(formatter)
+    info_handler.addFilter(info_filter)
+    app.logger.addHandler(info_handler)
+
+    warning_handler = logging.FileHandler('warning.log')
+    warning_filter = logging.Filter()
+    warning_filter.filter = lambda record:  record.levelno == logging.WARNING  # 设置过滤等级
+    warning_handler.setFormatter(formatter)
+    warning_handler.addFilter(warning_filter)
+    app.logger.addHandler(warning_handler)
+
+    error_handler = logging.FileHandler('error.log')
+    error_filter = logging.Filter()
+    error_filter.filter = lambda record: record.levelno == logging.ERROR  # 设置过滤等级
+    error_handler.setFormatter(formatter)
+    error_handler.addFilter(error_filter)
+    app.logger.addHandler(error_handler)
+
+    # app.logger.info("!!!")
     # app.logger.warning("Warning msg")
     # app.logger.error("Error msg!!!")
 
@@ -623,5 +643,4 @@ if __name__ == '__main__':
     # db.session.commit()
     # print(first_user.cart.cartDetails[0].product_number)
     # print(first_user.cart.cartDetails[1].product_number)
-
     app.run(debug=True)
