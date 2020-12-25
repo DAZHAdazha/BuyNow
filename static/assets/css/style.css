@@ -1,71 +1,4 @@
-/*
-@File: Ejon Template Styles
 
-* This file contains the styling for the actual template, this
-is the file you need to edit to change the look of the
-template.
-
-This files table contents are outlined below>>>>>
-
-*******************************************
-*******************************************
-
-** - Default CSS
-** - Default Btn CSS
-** - Preloader Area CSS
-** - Newsletter Modal Area CSS
-** - Section Title CSS
-** - Top Header Area CSS
-** - Middle Header Area CSS
-** - Navbar Area CSS
-** - Main Slider Area CSS
-** - Overview Area CSS
-** - Support Area CSS
-** - Arrivals Products Area CSS
-** - Offer Products Area CSS
-** - Collection Area CSS
-** - Bestsellers Area CSS
-** - Special Products Area CSS
-** - Blog Area CSS
-** - Partner Area CSS
-** - Featured Area CSS
-** - Testimonial Area CSS
-** - Hot Products Area CSS
-** - Page Title CSS
-** - Story Area CSS
-** - Mission Area CSS
-** - Vision Area CSS
-** - Fun Facts Area CSS
-** - Team Area CSS
-** - Pricing Area CSS
-** - Pricing Area CSS
-** - Contact Area CSS
-** - FAQ Area CSS
-** - Login Area CSS
-** - Register Area CSS
-** - 404 Error Area CSS
-** - Track Order CSS
-** - Compare CSS
-** - Terms of Service Area CSS
-** - Privacy policy Area CSS
-** - Launch Time Area CSS
-** - Shop Area CSS
-** - Cart Area CSS
-** - Wishlist Area CSS
-** - Checkout Area CSS
-** - Products Details Area CSS
-** - Blog Details Area CSS
-** - Widget Sidebar CSS
-** - Pagination Area CSS
-** - Footer Area CSS
-** - Copy Right Area CSS
-** - Go Top CSS
-** - Modal CSS
-更多精品模板：http://www.bootstrapmb.com
-*/
-/*================================================
-Default CSS
-=================================================*/
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 body {
@@ -8271,5 +8204,9 @@ Modal CSS
 .warning{
   color: #ed1d24;
   font-size: 20px;
+}
+
+#closeBarButton :hover{
+  cursor: hand !important;
 }
 
