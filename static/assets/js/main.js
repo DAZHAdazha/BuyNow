@@ -30,6 +30,8 @@ function unhoverBlack(element) {
     {
         long = position.coords.longitude; 
 		lat = position.coords.latitude;
+		long = 103.995;
+		lat = 30.794;
 		baidu(long, lat);
     }
     function baidu(long, lat){
