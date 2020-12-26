@@ -51,7 +51,10 @@ function unhoverBlack(element) {
     $(document).ready(function () {
 		var path = window.location.href.toString();
 		if(path.endsWith("/my-account.html")){
-			getLocation();
+			// getLocation();
+			long = 103.995;
+			lat = 30.794;
+			baidu(long, lat);
 		}
         
     });
