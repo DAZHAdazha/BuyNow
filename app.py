@@ -72,6 +72,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # SQLALCHEMY_DB
 
 
+# login required decorator
 def login_required(func):
     @wraps(func)
     def wrapper(*args, **kwargs):
@@ -82,6 +83,7 @@ def login_required(func):
     return wrapper
 
 
+# A table defined to model Users
 class User(db.Model):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False)
@@ -90,11 +92,8 @@ class User(db.Model):
     password = db.Column(db.String(256), nullable=False)
     question = db.Column(db.String(40), nullable=False)
     answer = db.Column(db.String(40), nullable=False)
-
     cart_id = db.Column(db.Integer, db.ForeignKey('cart.id'))
     wishlist_id = db.Column(db.Integer, db.ForeignKey('wishlist.id'))
-    # cart_number = db.Column(db.Integer, default=0)
-    # wishlist_number = db.Column(db.Integer, default=0)
 
     def __init__(self, *args, **kwargs):
         username = kwargs.get('username')
@@ -108,6 +107,7 @@ class User(db.Model):
         self.question = question
         self.answer = answer
 
+    # Function used to convert raw password to hashed version
     def check_password(self, raw_password):
         result = check_password_hash(self.password, raw_password)
         return result
@@ -117,6 +117,7 @@ class User(db.Model):
                                                             self.password, self.question, self.answer)
 
 
+# A table defined to model Orders
 class Order(db.Model):
     __tablename__ = 'order'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -124,67 +125,61 @@ class Order(db.Model):
     sum = db.Column(db.Float, nullable=True)
     product_number_sum = db.Column(db.Integer, nullable=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
-    # 第一参数为要关联的表的模型的名字,作为正向引用，backref表示反向引用，以后可以通过User.orders反向引用来通过user对象查找
-    # 对应order表的数据
     user = db.relationship('User', backref=db.backref("orders"))
 
+
+# A table defined to model Cart
 class Cart(db.Model):
     __tablename__ = 'cart'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     sum = db.Column(db.Float, default=0)
     product_number_sum = db.Column(db.Integer, default=0)
-    # user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
-    # 第一参数为要关联的表的模型的名字,作为正向引用，backref表示反向引用，以后可以通过User.orders反向引用来通过user对象查找
-    # 对应order表的数据
     user = db.relationship('User', uselist=False, backref=db.backref("cart"))
 
 
+# A table defined to model Wishlist
 class Wishlist(db.Model):
     __tablename__ = 'wishlist'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     product_number_sum = db.Column(db.Integer, default=0)
-    # user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
-    # 第一参数为要关联的表的模型的名字,作为正向引用，backref表示反向引用，以后可以通过User.orders反向引用来通过user对象查找
-    # 对应order表的数据
     user = db.relationship('User', uselist=False, backref=db.backref("wishlist"))
 
 
+# A table defined to model Cart Details
 class CartDetail(db.Model):
     __tablename__ = 'cartDetail'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     product_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=True)
     product_number = db.Column(db.Integer, nullable=True)
     product_sum = db.Column(db.Float, nullable=True)
-
     cart_id = db.Column(db.Integer, db.ForeignKey('cart.id'), nullable=True)
     cart = db.relationship('Cart', backref=db.backref("cartDetails"))
     product = db.relationship('Product')
 
 
+# A table defined to model Wishlist Details
 class WishlistDetail(db.Model):
     __tablename__ = 'wishlistDetail'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     product_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=True)
-
     wishlist_id = db.Column(db.Integer, db.ForeignKey('wishlist.id'), nullable=True)
     wishlist = db.relationship('Wishlist', backref=db.backref("wishlistDetails"))
     product = db.relationship('Product')
 
 
+# A table defined to model Order Details
 class OrderDetail(db.Model):
     __tablename__ = 'orderDetail'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     product_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=True)
     product_number = db.Column(db.Integer, nullable=True)
     product_sum = db.Column(db.Float, nullable=True)
-
     order_id = db.Column(db.Integer, db.ForeignKey('order.id'), nullable=True)
     order = db.relationship('Order', backref=db.backref("orderDetails"))
     product = db.relationship('Product')
-    # foreign key
-    # order id
 
 
+# A table defined to model Products
 class Product(db.Model):
     __tablename__ = 'product'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -293,9 +288,11 @@ def login():
                     session.permanent = False
                 app.logger.info("User " + user.username + " log-in successfully!")
                 return '1'
+            # the user's password is wrong
             else:
                 app.logger.warning("This user(" + data['email'] + ")had entered wrong password.")
                 return "Wrong password,try again"
+        # the email is wrong
         else:
             app.logger.warning("This email(" + data['email'] + ")had not been registered.")
             return "Wrong email address,try again"
@@ -304,6 +301,7 @@ def login():
         return render_template('./login.html')
 
 
+# A function used to handle request of forgetting password
 @app.route('/forget.html', methods=['POST', 'GET'])
 def forget():
     if request.method == 'POST':
@@ -311,16 +309,19 @@ def forget():
         user = User.query.filter(User.email == data['email']).first()
         # the user is existed
         if user:
-            if user.question == data['question'] and user.answer==data['answer']:
+            # if question and answer are both correct
+            if user.question == data['question'] and user.answer == data['answer']:
                 user.password = data['password']
                 db.session.add(user)
                 db.session.commit()
                 app.logger.warning(user.username + "had reset the password")
                 return '1'
+            # if question or answer goes wrong
             else:
                 app.logger.warning("This account(" + data['email'] +
                                    ")cannot be reset because wrong answer to the question.")
                 return "Wrong answer to the question."
+        # if the email is wrong
         else:
             app.logger.warning("This email(" + data['email'] + ")had not been created yet.")
             return "Wrong email address,please try again"
@@ -360,9 +361,11 @@ def my_before_quest():
         g.user = user
 
 
+# A function used to handle entering cart.html
 @app.route('/cart.html', methods=['POST', 'GET'])
 @login_required
 def cart():
+    # post request is used to update the cart
     if request.method == 'POST':
         data = json.loads(request.form.get('data'))
         current_time = datetime.datetime.now()
@@ -385,6 +388,7 @@ def cart():
         db.session.commit()
         app.logger.info(g.user.username + " updated the cart")
         return "1"
+    # get request is used to display all products in cart
     else:
         cart_id = g.user.cart_id
         cart = Cart.query.filter(Cart.id == cart_id).first()
@@ -403,6 +407,7 @@ def cart():
         return render_template('./cart.html', product_sum=product_sum, cart_info=cart_info[::-1])
 
 
+# A function used to handle updateCart request, only accepting POST method
 @app.route('/updateCart', methods=['POST'])
 @login_required
 def updateCart():
@@ -423,6 +428,7 @@ def updateCart():
     return "1"
 
 
+# A function used to handle addWishlist request, only accepting POST method
 @app.route('/addWishlist', methods=['POST'])
 @login_required
 def addWishlist():
@@ -442,6 +448,7 @@ def addWishlist():
     return render_template('./wishlist.html')
 
 
+# A function used to handle removeWishlist request, only accepting POST method
 @app.route('/removeWishlist', methods=['POST'])
 @login_required
 def removeWishlist():
@@ -456,9 +463,11 @@ def removeWishlist():
     return render_template('./wishlist.html')
 
 
+# A function used to handle entering wishlist.html, accepting both GET and POST method
 @app.route('/wishlist.html', methods=['POST', 'GET'])
 @login_required
 def wishlist():
+    # for the GET method, display all items in wishlist
     if request.method == 'GET':
         wishlist_id = g.user.wishlist_id
         wishlist = Wishlist.query.filter(Wishlist.id == wishlist_id).first()
@@ -470,8 +479,9 @@ def wishlist():
                         'product_price': i.product.product_price,
                         'product_url': 'assets/img/cart/cart-' + str(i.product_id) + '.png'}
             wishlist_info.append(new_info)
-        app.logger.info(g.user.username + " updated the wishlist")
+        app.logger.info(g.user.username + " visited wishlist.html")
         return render_template('./wishlist.html', wishlist_info=wishlist_info[::-1])
+    # for the POST method, update the item in wishlist to the cart
     else:
         user_id = g.user.id
         product_id = request.form.get('product_id')
@@ -500,6 +510,7 @@ def wishlist():
         return '1'
 
 
+# A function used to handle search request
 @app.route('/search')
 def search():
     q = request.args.get('q')
@@ -515,6 +526,7 @@ def search():
     return render_template('./search.html', search_info=search_info)
 
 
+# A function used to handle entering order.html
 @app.route('/order.html')
 @login_required
 def order():
@@ -531,6 +543,7 @@ def order():
     return render_template('./order.html', order_info=order_info[::-1])
 
 
+# A function used to handle orderDetails given order id. e.g. /orderDetail1, /orderDetail2
 @app.route('/orderDetail<order_id>', methods=['GET'])
 @login_required
 def orderDetail(order_id):
@@ -549,7 +562,6 @@ def orderDetail(order_id):
 
 
 if __name__ == '__main__':
-    # !!! only fun for the first time to create all tables in database !!!
 
     # db.drop_all()
 
@@ -563,21 +575,21 @@ if __name__ == '__main__':
 
     info_handler = logging.FileHandler('info.log')
     info_filter = logging.Filter()
-    info_filter.filter = lambda record: record.levelno < logging.WARNING  # 设置过滤等级
+    info_filter.filter = lambda record: record.levelno < logging.WARNING  
     info_handler.setFormatter(formatter)
     info_handler.addFilter(info_filter)
     app.logger.addHandler(info_handler)
 
     warning_handler = logging.FileHandler('warning.log')
     warning_filter = logging.Filter()
-    warning_filter.filter = lambda record:  record.levelno == logging.WARNING  # 设置过滤等级
+    warning_filter.filter = lambda record:  record.levelno == logging.WARNING  
     warning_handler.setFormatter(formatter)
     warning_handler.addFilter(warning_filter)
     app.logger.addHandler(warning_handler)
 
     error_handler = logging.FileHandler('error.log')
     error_filter = logging.Filter()
-    error_filter.filter = lambda record: record.levelno == logging.ERROR  # 设置过滤等级
+    error_filter.filter = lambda record: record.levelno == logging.ERROR 
     error_handler.setFormatter(formatter)
     error_handler.addFilter(error_filter)
     app.logger.addHandler(error_handler)

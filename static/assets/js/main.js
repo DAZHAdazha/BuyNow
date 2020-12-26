@@ -16,6 +16,45 @@ function unhoverBlack(element) {
 	}, 150)
 }
 
+    //show baidu map
+    var long, lat;
+    function getLocation()
+    {
+        if (navigator.geolocation)
+        {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        }
+    }
+    
+    function showPosition(position)
+    {
+        long = position.coords.longitude; 
+		lat = position.coords.latitude;
+		baidu(long, lat);
+    }
+    function baidu(long, lat){
+		var map = new BMap.Map("container"); 
+		console.log(long);
+		console.log(lat);
+        var point = new BMap.Point(long,lat); 
+        map.centerAndZoom(point, 15);  
+        map.enableScrollWheelZoom(true);    
+        map.addControl(new BMap.NavigationControl());    
+        map.addControl(new BMap.ScaleControl());    
+        map.addControl(new BMap.OverviewMapControl());    
+		map.addControl(new BMap.MapTypeControl());    
+		var marker = new BMap.Marker(point);
+		map.addOverlay(marker);
+    }
+    $(document).ready(function () {
+		var path = window.location.href.toString();
+		if(path.endsWith("/my-account.html")){
+			getLocation();
+		}
+        
+    });
+
+
 jQuery(function ($) {
     'use strict';
 
@@ -320,6 +359,7 @@ jQuery(function ($) {
 		$("#signUpForm").validator().on("submit", function(event) {
 			if (event.isDefaultPrevented()) {
 				formErrorS();
+				$(".warning")[0].innerText = "Some fields are blank or wrong form of email address!";
 			} else {
 				if($('#password').val().length<8){
 					formErrorS();

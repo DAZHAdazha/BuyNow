@@ -2,7 +2,7 @@
 <html lang="zxx">
 
 <head>
-    
+
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -41,30 +41,32 @@
 <body>
 
     <script>
-        function closeBar(){
-        document.getElementById("bar").style.display="none";
+        function closeBar() {
+            document.getElementById("bar").style.display = "none";
         }
     </script>
-            <div id="bar" class="col-lg-12" style=" z-index:9999; background-color: #113366; bottom: 5px; position: fixed;">
-                <div class="container" >
-                        <div width="100%"  >
-                            <table width="100%" border="0" cellspacing="0" cellpadding="5">
-                            <tr>
-                                <td width="90%">
-                                    <span style="text-decoration: none"><font size=4 color="white">This website will use Cookies and Sessions</font></span></td>
-                                </td>
-                                <td width="10%" align="right">
+    <div id="bar" class="col-lg-12" style=" z-index:9999; background-color: #113366; bottom: 5px; position: fixed;">
+        <div class="container">
+            <div width="100%">
+                <table width="100%" border="0" cellspacing="0" cellpadding="5">
+                    <tr>
+                        <td width="90%">
+                            <span style="text-decoration: none">
+                                <font size=4 color="white">This website will use Cookies and Sessions</font>
+                            </span></td>
+                        </td>
+                        <td width="10%" align="right">
 
-                                    <button type="button" class="btn btn-success"  onClick=closeBar()>Agree</button>
+                            <button type="button" class="btn btn-success" onClick=closeBar()>Agree</button>
 
 
-                                    <!-- <span id="closeBarButton" onClick=closeBar()><font color="white">Agree</font></span> -->
-                                </td>
-                            </tr>
-                            </table>
-                        </div>
+                            <!-- <span id="closeBarButton" onClick=closeBar()><font color="white">Agree</font></span> -->
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
+    </div>
 
     <!-- Start Preloader Area -->
     <div class="preloader">
@@ -103,9 +105,10 @@
                                     <div class="content">
                                         <h3>Login to BuyNow</h3>
                                         <p>Sign up for our mailing list to get the latest updates & offers. <span>
-                                            &nbsp;<a style="text-decoration: underline;" href="register.html" > Sign up </a>&nbsp;
-                                        </span>
-                                    </p>
+                                                &nbsp;<a style="text-decoration: underline;" href="register.html"> Sign
+                                                    up </a>&nbsp;
+                                            </span>
+                                        </p>
                                     </div>
 
                                     <form id="modal-form" class="newsletter-form">
@@ -117,7 +120,6 @@
                                             <input id="password" type="password" class="input-newsletter"
                                                 placeholder="password" name="PASSWORD" required autocomplete="off">
                                         </p>
-
                                         <div class="row align-items-center">
                                             <div class="col-lg-6 col-md-6 col-sm-6">
                                                 <div class="form-check">
@@ -126,22 +128,14 @@
                                                         me</label>
                                                 </div>
                                             </div>
-
                                             <div class="col-lg-6 col-md-6 col-sm-6 lost-your-password">
                                                 <a href="forget.html" class="lost-your-password">Forgot password?</a>
                                             </div>
-
                                         </div>
-
                                         <button type="submit">Login</button>
                                         <div class="warning">
-
                                         </div>
                                     </form>
-
-
-
-
                                     <ul class="modal-social">
                                         <li>
                                             <a href="#" target="_blank">
@@ -220,11 +214,12 @@
 
                 <div class="col-lg-6">
                     <div class="middle-header-search">
-                        <form action="{{ url_for('search') }}"  method="GET">
+                        <form action="{{ url_for('search') }}" method="GET">
                             <div class="row align-items-center">
                                 <div class="col-md-12">
                                     <div class="search-box">
-                                        <input name="q" type="text" class="form-control search-field" placeholder="Search product...">
+                                        <input name="q" type="text" class="form-control search-field"
+                                            placeholder="Search product...">
                                         <button type="submit"><i class='bx bx-search'></i></button>
                                     </div>
                                 </div>
@@ -247,7 +242,9 @@
                         </li>
                         <li>
                             <a href="order.html">
-                                <img class="flation-order" style="margin-bottom: 15px;" src="{{ url_for('static', filename='assets/img/order.svg') }}"onmouseover="hover(this);" onmouseout="unhover(this);" alt="">
+                                <img class="flation-order" style="margin-bottom: 15px;"
+                                    src="{{ url_for('static', filename='assets/img/order.svg') }}"
+                                    onmouseover="hover(this);" onmouseout="unhover(this);" alt="">
                             </a>
                         </li>
                     </ul>
@@ -507,7 +504,7 @@
 
                         <div class="others-option d-flex align-items-center">
                             <div class="option-item">
-                                
+
                             </div>
                         </div>
                     </div>
@@ -529,7 +526,7 @@
                     <div class="option-inner">
                         <div class="others-option d-flex align-items-center">
                             <div class="option-item">
-                                
+
                             </div>
                         </div>
                     </div>
@@ -892,7 +889,8 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="wishlist_item" name="5" href="wishlist.html"><i class="flaticon-heart"></i></a>
+                                    <a class="wishlist_item" name="5" href="wishlist.html"><i
+                                            class="flaticon-heart"></i></a>
                                 </li>
                             </ul>
                         </div>
@@ -927,7 +925,8 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="wishlist_item" name="1" href="wishlist.html"><i class="flaticon-heart"></i></a>
+                                    <a class="wishlist_item" name="1" href="wishlist.html"><i
+                                            class="flaticon-heart"></i></a>
                                 </li>
                             </ul>
                         </div>
@@ -948,7 +947,7 @@
                     </div>
                 </div>
 
-                
+
             </div>
         </div>
     </section>
