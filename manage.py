@@ -1,10 +1,7 @@
 from flask_script import Manager
 # it need app as argument to create Manager object
-from app import app
-from db_script import db_manager
+from app import app, db
 from flask_migrate import Migrate, MigrateCommand
-from exts import db
-from models import User
 
 manager = Manager(app)
 

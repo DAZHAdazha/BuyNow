@@ -849,6 +849,12 @@ jQuery(function ($) {
 			window.location.replace(new_path); 
 		})
 
+		$("#backHome").on('click', function(event){
+			event.preventDefault();
+			var new_path = './index.html';
+			window.location.replace(new_path); 
+		})
+
 
 }(jQuery));
 
