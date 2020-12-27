@@ -11,8 +11,9 @@ from .models import User, Cart, CartDetail, Order, OrderDetail, Product, Wishlis
 from .decorator import login_required
 from .utils import login_log
 from app import app, db
+import pytz
 
-
+tz = pytz.timezone('Asia/Shanghai')
 
 # initialize a flask object by transmitting a "__name__"
 # 1.convenient for flask frame to locate resource
@@ -224,7 +225,7 @@ def cart():
     # post request is used to update the cart
     if request.method == 'POST':
         data = json.loads(request.form.get('data'))
-        current_time = datetime.datetime.now()
+        current_time = datetime.datetime.now(tz)
         total = data['total']
         product_sum = data['product_sum']
         order = Order(time=current_time, sum=total, product_number_sum=product_sum, user_id=g.user.id)
