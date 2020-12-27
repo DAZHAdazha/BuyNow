@@ -28,16 +28,19 @@ function unhoverBlack(element) {
     
     function showPosition(position)
     {
-        long = position.coords.longitude; 
-		lat = position.coords.latitude;
-		long = 103.995;
-		lat = 30.794;
+		long = localStorage.getItem("long");
+		lat = localStorage.getItem("lat");
+		if(!long){
+			long = position.coords.longitude; 
+			lat = position.coords.latitude;
+			localStorage.setItem("long", long);
+			localStorage.setItem("lat", lat);
+		}
+        
 		baidu(long, lat);
     }
     function baidu(long, lat){
 		var map = new BMap.Map("container"); 
-		console.log(long);
-		console.log(lat);
         var point = new BMap.Point(long,lat); 
         map.centerAndZoom(point, 15);  
         map.enableScrollWheelZoom(true);    
@@ -51,10 +54,11 @@ function unhoverBlack(element) {
     $(document).ready(function () {
 		var path = window.location.href.toString();
 		if(path.endsWith("/my-account.html")){
-			// getLocation();
-			long = 103.995;
-			lat = 30.794;
-			baidu(long, lat);
+			getLocation();
+			//! deployment version
+			// long = 103.995;
+			// lat = 30.794;
+			// baidu(long, lat);
 		}
         
     });
@@ -400,7 +404,6 @@ jQuery(function ($) {
 				}); 
 		}
 
-
 		$("#modal-form").validator().on("submit", function(event) {
 			if (event.isDefaultPrevented()) {
 				formErrorM();
@@ -464,8 +467,20 @@ jQuery(function ($) {
 			if (event.isDefaultPrevented()) {
 				formErrorForget();
 			} else {
-				event.preventDefault();
-				submitFormForget();
+				var password = $("#password").val();
+				if(password.length<8){
+					event.preventDefault();
+					$(".warning")[0].innerText = "password length should over 8 characters.";
+					$("#forgetForm").addClass("animated shake");
+					setTimeout(function() {
+						$("#forgetForm").removeClass("animated shake");
+					}, 1000)
+				}
+				else{
+					event.preventDefault();
+					submitFormForget();
+				}
+				
 			}
 		});
 	
@@ -478,14 +493,17 @@ jQuery(function ($) {
         $.post(path,{email: email, password: password, answer:answer, question:question},
             function(data){
                 if(data == '1'){
-                    // var href = "./user.html";
                     var href = "./login.html";
                     window.location.replace(href);
                 }
                 else{
                     formErrorForget();
                     setTimeout(function() {
-						alert(data);
+						$(".warning")[0].innerText = data;
+						$("#forgetForm").addClass("animated shake");
+						setTimeout(function() {
+							$("#forgetForm").removeClass("animated shake");
+						}, 1000)
 					}, 500)
                 }
             });  
