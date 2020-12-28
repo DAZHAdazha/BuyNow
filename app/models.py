@@ -31,8 +31,8 @@ class User(db.Model):
         return result
 
     def __repr__(self):
-        return '<id:%d username:%s email:%s password:%s question:%s answer:%s>' % (self.id, self.username, self.email,
-                                                            self.password, self.question, self.answer)
+        return '<id:%d username:%s email:%s password:%s question:%s answer:%s>' 
+        % (self.id, self.username, self.email, self.password, self.question, self.answer)
 
 
 # A table defined to model Orders
