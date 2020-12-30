@@ -61,7 +61,8 @@ function unhoverBlack(element) {
 			// baidu(long, lat);
 		}
         
-    });
+	});
+
 
 
 jQuery(function ($) {

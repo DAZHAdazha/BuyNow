@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from flask import Flask, render_template, request, redirect, url_for, session, g
-
+from flask import render_template, request, redirect, url_for, session, g
+from werkzeug.security import generate_password_hash
 
 from sqlalchemy import or_
 import datetime
@@ -168,7 +168,7 @@ def forget():
         if user:
             # if question and answer are both correct
             if user.question == data['question'] and user.answer == data['answer']:
-                user.password = data['password']
+                user.password = generate_password_hash(data['password'])
                 db.session.add(user)
                 db.session.commit()
                 app.logger.warning(user.username + "had reset the password")
