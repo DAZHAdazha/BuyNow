@@ -40,15 +40,15 @@ function unhoverBlack(element) {
 		baidu(long, lat);
     }
     function baidu(long, lat){
-		var map = new BMap.Map("container"); 
-        var point = new BMap.Point(long,lat); 
+		var map = new BMapGL.Map("container"); 
+		var point = new BMapGL.Point(long,lat); 
         map.centerAndZoom(point, 15);  
         map.enableScrollWheelZoom(true);    
-        map.addControl(new BMap.NavigationControl());    
-        map.addControl(new BMap.ScaleControl());    
-        map.addControl(new BMap.OverviewMapControl());    
-		map.addControl(new BMap.MapTypeControl());    
-		var marker = new BMap.Marker(point);
+        map.addControl(new BMapGL.NavigationControl({anchor: BMAP_ANCHOR_BOTTOM_RIGHT}));    
+        map.addControl(new BMapGL.CityListControl());    
+		map.addControl(new BMapGL.MapTypeControl());
+		map.addControl(new BMapGL.ScaleControl());        
+		var marker = new BMapGL.Marker(point);
 		map.addOverlay(marker);
     }
     $(document).ready(function () {
