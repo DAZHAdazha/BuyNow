@@ -1,0 +1,388 @@
+{
+	"info": {
+		"_postman_id": "151fc4ac-75fb-4fa0-ada6-cd7834ac8b4d",
+		"name": "Buynow",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "BuyNow-login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "admin@qq.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "hahahaha",
+							"type": "text"
+						},
+						{
+							"key": "remember",
+							"value": "false",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "dazhadazha.pythonanywhere.com/login.html",
+					"host": [
+						"dazhadazha",
+						"pythonanywhere",
+						"com"
+					],
+					"path": [
+						"login.html"
+					]
+				},
+				"description": "URL:dazhadazha.pythonanywhere.com\r\ntest:login functionality (for account 758343984@qq.com)"
+			},
+			"response": []
+		},
+		{
+			"name": "BuyNow-register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "admin@qq.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "adminadmin",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "text"
+						},
+						{
+							"key": "question",
+							"value": "What is the name of your pet?",
+							"type": "text"
+						},
+						{
+							"key": "answer",
+							"value": "katty",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "dazhadazha.pythonanywhere.com/register.html",
+					"host": [
+						"dazhadazha",
+						"pythonanywhere",
+						"com"
+					],
+					"path": [
+						"register.html"
+					]
+				},
+				"description": "URL:dazhadazha.pythonanywhere.com\r\ntest:login functionality (for account 758343984@qq.com)"
+			},
+			"response": []
+		},
+		{
+			"name": "BuyNow-resetPassword",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "admin@qq.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "hahahaha",
+							"type": "text"
+						},
+						{
+							"key": "question",
+							"value": "What is the name of your pet?",
+							"type": "text"
+						},
+						{
+							"key": "answer",
+							"value": "katty",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "dazhadazha.pythonanywhere.com/forget.html",
+					"host": [
+						"dazhadazha",
+						"pythonanywhere",
+						"com"
+					],
+					"path": [
+						"forget.html"
+					]
+				},
+				"description": "URL:dazhadazha.pythonanywhere.com\r\ntest:login functionality (for account 758343984@qq.com)"
+			},
+			"response": []
+		},
+		{
+			"name": "BuyNow-addWishlist",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "product_id",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "dazhadazha.pythonanywhere.com/addWishlist",
+					"host": [
+						"dazhadazha",
+						"pythonanywhere",
+						"com"
+					],
+					"path": [
+						"addWishlist"
+					]
+				},
+				"description": "URL:dazhadazha.pythonanywhere.com\r\ntest:login functionality (for account 758343984@qq.com)"
+			},
+			"response": []
+		},
+		{
+			"name": "BuyNow-order",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "data",
+							"value": "{\"products\": [{\"id\": 3, \"name\": \"Digital Camera\", \"price\": 200, \"quantity\": 3, \"sum\": 600}, {\"id\": 2, \"name\": \"Protable Speakers\", \"price\": 200, \"quantity\": 2, \"sum\": 400}], \"total\": 1030, \"product_sum\": 5}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "dazhadazha.pythonanywhere.com/cart.html",
+					"host": [
+						"dazhadazha",
+						"pythonanywhere",
+						"com"
+					],
+					"path": [
+						"cart.html"
+					]
+				},
+				"description": "URL:dazhadazha.pythonanywhere.com\r\ntest:login functionality (for account 758343984@qq.com)"
+			},
+			"response": []
+		},
+		{
+			"name": "BuyNow-updateCart",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "data",
+							"value": "{\"products\": [{\"id\": 3, \"name\": \"Digital Camera\", \"price\": 200, \"quantity\": 3, \"sum\": 600}, {\"id\": 2, \"name\": \"Protable Speakers\", \"price\": 200, \"quantity\": 2, \"sum\": 400}], \"total\": 1030, \"product_sum\": 5}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "dazhadazha.pythonanywhere.com/updateCart",
+					"host": [
+						"dazhadazha",
+						"pythonanywhere",
+						"com"
+					],
+					"path": [
+						"updateCart"
+					]
+				},
+				"description": "URL:dazhadazha.pythonanywhere.com\r\ntest:login functionality (for account 758343984@qq.com)"
+			},
+			"response": []
+		},
+		{
+			"name": "BuyNow-addCart",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "product_id",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "product_quantity",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "dazhadazha.pythonanywhere.com/wishlist.html",
+					"host": [
+						"dazhadazha",
+						"pythonanywhere",
+						"com"
+					],
+					"path": [
+						"wishlist.html"
+					]
+				},
+				"description": "URL:dazhadazha.pythonanywhere.com\r\ntest:login functionality (for account 758343984@qq.com)"
+			},
+			"response": []
+		},
+		{
+			"name": "BuyNow-search",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true,
+					"content-length": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "dazhadazha.pythonanywhere.com/search?q=phone",
+					"host": [
+						"dazhadazha",
+						"pythonanywhere",
+						"com"
+					],
+					"path": [
+						"search"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "phone"
+						}
+					]
+				},
+				"description": "URL:dazhadazha.pythonanywhere.com\r\ntest:login functionality (for account 758343984@qq.com)"
+			},
+			"response": []
+		},
+		{
+			"name": "BuyNow-removeWishlist",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "product_id",
+							"value": "3",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "dazhadazha.pythonanywhere.com/removeWishlist",
+					"host": [
+						"dazhadazha",
+						"pythonanywhere",
+						"com"
+					],
+					"path": [
+						"removeWishlist"
+					]
+				},
+				"description": "URL:dazhadazha.pythonanywhere.com\r\ntest:login functionality (for account 758343984@qq.com)"
+			},
+			"response": []
+		}
+	]
+}

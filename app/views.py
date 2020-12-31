@@ -229,7 +229,7 @@ def cart():
         total = data['total']
         product_sum = data['product_sum']
         order = Order(time=current_time, sum=total, product_number_sum=product_sum, user_id=g.user.id)
-        user = User.query.filter(User.id==g.user.id).first()
+        user = User.query.filter(User.id == g.user.id).first()
         order.user = user
         db.session.add(order)
         for i in data['products']:
