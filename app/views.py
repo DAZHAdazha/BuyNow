@@ -243,7 +243,7 @@ def cart():
         user.cart.product_number_sum = 0
         db.session.add(user.cart)
         db.session.commit()
-        app.logger.info(g.user.username + " updated the cart")
+        app.logger.info(g.user.username + " make a order")
         return "1"
     # get request is used to display all products in cart
     else:
