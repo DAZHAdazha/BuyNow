@@ -12,6 +12,7 @@ from .decorator import login_required
 from .utils import login_log
 from app import app, db
 import pytz
+from .exts import logger_init
 
 tz = pytz.timezone('Asia/Shanghai')
 
@@ -43,6 +44,7 @@ app.secret_key = 'dazha'  # import os; app.secret_key = os.urandom(24) # ç”¨osåº
 # or using the form of "object(dic)['attr']"
 passing_data = {'signup_user': 0}
 
+logger_init()
 
 # this decorator will project to a url view function
 @app.route('/index.html', methods=['GET', 'POST'])
